@@ -3,6 +3,7 @@ import { ChangeEvent, ReactElement, useCallback, useState } from 'react';
 import { useViewerQuery, useUpdateNameMutation, ViewerDocument, ViewerQuery } from '../lib/viewer.graphql';
 import { initializeApollo } from '../lib/apollo';
 import { NormalizedCacheObject } from '@apollo/client';
+import MainTemplate from '@templates/Main';
 
 const Index: () => ReactElement = () => {
   const viewer = useViewerQuery().data?.viewer;
@@ -35,19 +36,7 @@ const Index: () => ReactElement = () => {
     });
   }, [updateNameMutation, newName]);
 
-  return (
-    <div>
-      You are signed in as {viewer?.name} and you are {viewer?.status}. Go to the{' '}
-      <Link href='/about'>
-        <a>about</a>
-      </Link>{' '}
-      page.
-      <div>
-        <input type='text' placeholder='your new name...' onChange={handleChangeName} />
-        <input type='button' value='change' onClick={handleUpdateName} />
-      </div>
-    </div>
-  );
+  return <MainTemplate />;
 };
 
 export async function getStaticProps(): Promise<{ props: { initialApolloState: NormalizedCacheObject } }> {
