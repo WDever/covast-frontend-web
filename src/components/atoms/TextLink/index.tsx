@@ -9,9 +9,9 @@ export interface Props extends LinkProps {
   className?: HTMLAttributes<HTMLElement>['className'];
 }
 
-function TextLink({ size = 'base', className, prefetch = true, children, ...props }: Props): ReactElement {
+function TextLink({ size = 'base', className, children, ...props }: Props): ReactElement {
   return (
-    <Link prefetch={prefetch} {...props}>
+    <Link {...props}>
       <a className={`font-sans font=${size} ${className}`}>{children}</a>
     </Link>
   );
